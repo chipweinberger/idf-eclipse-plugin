@@ -210,4 +210,17 @@
         name="%page.name">
   </page>
 	</extension>
+    <extension
+          point="org.eclipse.ltk.core.refactoring.renameParticipants">
+       <renameParticipant
+             class="com.espressif.idf.ui.handlers.RenameHandler"
+             id="com.espressif.idf.ui.renameParticipant"
+             name="renameHandler">
+          <enablement>
+             <instanceof
+                   value="org.eclipse.core.resources.IProject">
+             </instanceof>
+          </enablement>
+       </renameParticipant>
+    </extension>
 </plugin>
