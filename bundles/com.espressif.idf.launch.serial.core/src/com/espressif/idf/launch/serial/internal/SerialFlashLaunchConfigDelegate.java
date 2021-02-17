@@ -161,16 +161,6 @@ public class SerialFlashLaunchConfigDelegate extends CoreBuildGenericLaunchConfi
 
 	}
 
-	private String getEspBuildCommand(ILaunch launch) {
-
-		List<String> commands = new ArrayList<>();
-		commands.add(IDFUtil.getIDFPythonScriptFile().getAbsolutePath());
-
-		commands.add("build");
-
-		return String.join(" ", commands); //$NON-NLS-1$
-	}
-
 	@Override
 	public boolean buildForLaunch(ILaunchConfiguration configuration, String mode, ILaunchTarget target,
 			IProgressMonitor monitor) throws CoreException {
