@@ -20,7 +20,6 @@ import com.espressif.idf.core.IDFEnvironmentVariables;
 import com.espressif.idf.core.ProcessBuilderFactory;
 import com.espressif.idf.core.logging.Logger;
 import com.espressif.idf.core.util.IDFUtil;
-import com.espressif.idf.core.util.StringUtil;
 import com.espressif.idf.ui.update.ListInstalledToolsHandler;
 import com.espressif.idf.ui.update.Messages;
 
@@ -30,14 +29,7 @@ public class ProductInformationHandler extends ListInstalledToolsHandler
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException
 	{
-		if (!StringUtil.isEmpty(getPythonExecutablePath()) && !StringUtil.isEmpty(IDFUtil.getIDFPath()))
-		{
-			super.execute(event);
-		}
-		else
-		{
-			activateIDFConsoleView();
-		}
+		super.execute(event);
 		console.println(IDFEnvironmentVariables.IDF_PATH + ": "
 				+ new IDFEnvironmentVariables().getEnvValue(IDFEnvironmentVariables.IDF_PATH)); // $NON-NLS-1$
 		console.println(IDFEnvironmentVariables.IDF_PYTHON_ENV_PATH + ": "
@@ -49,8 +41,7 @@ public class ProductInformationHandler extends ListInstalledToolsHandler
 		console.println(Messages.JavaRuntimeVersionMsg + System.getProperty("java.runtime.version")); //$NON-NLS-1$
 		console.println(Messages.EclipseMsg + Platform.getBundle("org.eclipse.platform").getVersion().toString()); //$NON-NLS-1$
 		console.println(Messages.EclipseCDTMsg + Platform.getBundle("org.eclipse.cdt").getVersion().toString()); //$NON-NLS-1$
-		if (!IDFUtil.getIDFPythonEnvPath().isEmpty() && !IDFUtil.getIDFPythonScriptFile().getAbsolutePath().isEmpty())
-			showEspIdfVersion();
+		showEspIdfVersion();
 		console.println(Messages.PythonIdfEnvMsg + getPythonExeVersion(IDFUtil.getIDFPythonEnvPath()));
 		console.println(Messages.PythonPathMsg + getPythonExeVersion("python")); //$NON-NLS-1$
 
